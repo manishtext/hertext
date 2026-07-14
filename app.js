@@ -24,7 +24,7 @@ const DEFAULT_PHOTO_LABEL = '+ Add photo';
 let isSending = false;
 
 /* ==========================================================================
-   THE INTERACTIVE FIELD STATE — ink underline grows on focus
+   THE INTERACTIVE FIELD STATE — Ink underline grows on focus
    ========================================================================== */
 textInput.addEventListener('focus', () => underlineTrack.classList.add('is-focused'));
 textInput.addEventListener('blur', () => underlineTrack.classList.remove('is-focused'));
