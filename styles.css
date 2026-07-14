@@ -7,7 +7,7 @@
   --ink-muted: #8B8478;
   --hairline: #DED7C7;
   --accent: #7B3B32; /* used only on the timestamp dot, focus underline, and send */
-  --input-surface: #E9E4D6; /* the reply textarea's own writing surface, a touch deeper than paper */
+  --input-surface: #E9E4D6; /* the reply textareas own writing surface, a touch deeper than paper */
 }
 
 * {
