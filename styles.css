@@ -220,25 +220,33 @@ body {
    PRIVATE FEEDBACK TERMINAL — centered, floating, same double-box language
    ========================================================================== */
 .feedback-terminal {
-  position: fixed !important; /* Forces it to lock to the screen */
+  position: fixed !important;
   left: 50%;
   bottom: 28px;
   transform: translateX(-50%);
   width: calc(100% - 64px);
   max-width: 480px;
 
+  /* 1. THE NUKE: Forces the box to perfectly vacuum-seal around the text and buttons */
+  height: fit-content !important;
+  min-height: 0 !important;
+  max-height: fit-content !important;
+
   isolation: isolate;
   background: var(--paper);
   border: 1px solid var(--ink);
   border-radius: 0;
-  z-index: 999; /* Boosted so it always floats over text and watermarks */
+  z-index: 999;
 
-  padding: 22px 24px calc(20px + env(safe-area-inset-bottom));
+  /* 2. THE ANDROID FIX: Hardcoded 24px padding. 
+     This removes the buggy 'env()' math that creates the massive blank gap. */
+  padding: 22px 24px 24px !important;
 
   opacity: 0;
   animation: terminal-reveal 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: 1660ms;
 }
+
 
 
 
