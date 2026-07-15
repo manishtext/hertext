@@ -192,7 +192,7 @@ body {
   margin: 0;
   font-family: 'Fraunces', serif;
   font-weight: 400;
-  font-size: 15px; /* Locked size prevents splitting words across lines */
+  font-size: 17px; /* Locked size prevents splitting words across lines */
   line-height: 1.45;
   color: var(--ink);
   word-break: keep-all; /* Ensures words never chop in half */
