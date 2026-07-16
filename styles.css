@@ -344,7 +344,7 @@ body {
   background: none;
   border: none;
   padding: 8px 0;
-  transition: transform 200ms ease, color 250ms ease, opacity 250ms ease;
+  transition: transform 210ms ease, color 250ms ease, opacity 250ms ease;
 }
 
 .terminal-action-label {
