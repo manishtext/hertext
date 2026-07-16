@@ -1,6 +1,6 @@
 # Made Only For Her 💖
 
-> "This entire space belongs to the girl who changed everything." ✨
+> "This entire space belongs to the girl who I love." ✨
 
 ---
 
