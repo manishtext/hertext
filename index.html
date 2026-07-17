@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
 <title>MANISH.</title>
-
+<!-- Force browser to always fetch the latest deployed code -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<!-- Cache -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,600;1,900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -48,23 +51,61 @@
     <!-- The Greeting Component -->
   <header class="greeting-container">
   <!-- Keep this tag empty; JS will handle the internal architecture safely -->
-  <h1 id="dynamicGreeting" class="greeting-text"></h1>
+  <h1 id="dynamic-greeting" class="greeting-text"></h1>
 </header>
     
     <main class="letters" id="letters">
+      
+      
+            <article class="letter-entry" data-type="Reply" style="--x: -8px; --y: -8px;" >
+        <p class="entry-timestamp">
+          <span class="entry-date">July 17</span><span class="timestamp-dot">&middot;</span><span class="entry-time">01:37 PM</span>
+        </p>
+             
+    <figure class="entry-image-frame">
+      <img src="images/6.jpg" alt="Her message" class="entry-image">
+    </figure>
+    
+      <p class="entry-body">Kun kothar upre <strong>Why</strong> koiso, ektu details a kow.
+</p>     
+  </article>
         
-        <article class="letter-entry" data-type="Message" style="--x: -9px; --y: -9px;">
-  <p class="entry-timestamp">
-    <span class="entry-date">July 16</span><span class="timestamp-dot">&middot;</span><span class="entry-time">12:52 PM</span>
-  </p>
-  <hr>
-  <figure class="entry-image-frame">
-    <img src="images/study.jpg" alt="Go study" class="entry-image">
-  </figure> 
-        </article>
+         <article class="letter-entry" data-type="Reply" style="--x: 8px; --y: -8px;" >
+        <p class="entry-timestamp">
+          <span class="entry-date">July 17</span><span class="timestamp-dot">&middot;</span><span class="entry-time">11:55 AM</span>
+        </p>
+             
+    <figure class="entry-image-frame">
+      <img src="images/5.jpg" alt="Her message" class="entry-image">
+    </figure>
+    
+      <p class="entry-body">
+          Got it<br>
+          Kew tumara disturb korle koio I mean kunu chala a.<br><br>
+<strong>You to take care yourself and your health.<br>
+Don't neglect your body properly sleep,eat maintain a healthy life, maintaining a healthy life is your responsibility.<br>
+Don't waste your time on useless things,<br>
+Focus on your studies.<br>
+Go study
+</strong>
+</p>     
+  </article>
         
         
-         <article class="letter-entry" data-type="Reply" style="--x: 9px; --y: -9px;" >
+         <article class="letter-entry" data-type="Message" style="--x: -8px; --y: -8px;" >
+        <p class="entry-timestamp">
+          <span class="entry-date">July 16</span><span class="timestamp-dot">&middot;</span><span class="entry-time">12:52 PM</span>
+        </p>
+             <hr>
+        <figure class="entry-image-frame">
+      <img src="images/study.jpg" alt="Go study" class="entry-image">
+    </figure>
+
+  </article>
+        
+        
+        
+         <article class="letter-entry" data-type="Reply" style="--x: 8px; --y: -8px;" >
         <p class="entry-timestamp">
           <span class="entry-date">July 15</span><span class="timestamp-dot">&middot;</span><span class="entry-time">10:22 PM</span>
         </p>
@@ -82,7 +123,7 @@ Study korar modhe focus koro okon.</strong>
   </article>
         
         
-        <article class="letter-entry" data-type="Reply" style="--x: 9px; --y: 9px;" >
+        <article class="letter-entry" data-type="Reply" style="--x: 8px; --y: 8px;" >
         <p class="entry-timestamp">
           <span class="entry-date">July 14</span><span class="timestamp-dot">&middot;</span><span class="entry-time">11:47 PM</span>
         </p>
@@ -321,8 +362,8 @@ Bala thako ;<br>Love you 😁</p>
     ></textarea>
 
     <div class="terminal-actions">
-      <label for="reply-photo" class="terminal-action-label" id="photo-label">+ Add Photo</label>
-      <input type="file" id="reply-photo" accept="image/*" class="hidden-input">
+      <label for="reply-photo" class="terminal-action-label" id="photo-label">+ Add Media</label>
+      <input type="file" id="reply-photo" accept="image/*,video/*" class="hidden-input">
 
       <div class="terminal-right">
         <span class="sending-indicator" id="sending-indicator">Sending&hellip;</span>
@@ -332,7 +373,7 @@ Bala thako ;<br>Love you 😁</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
  
   
  
