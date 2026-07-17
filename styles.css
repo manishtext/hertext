@@ -281,6 +281,9 @@ body {
   line-height: 1.5;
   padding: 12px 14px;
   overflow-y: hidden;
+   /* --- THE RETRO TERMINAL CURSOR --- */
+  caret-color: var(--accent); /* Keeps your signature rust-red accent color */
+  caret-shape: underscore;         /* Transforms the cursor into a thick, bold terminal block */
 }
 
 
