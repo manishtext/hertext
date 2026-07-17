@@ -654,7 +654,7 @@ body {
   transform: translateY(6px);
   /* Waits 1.5s for splash screen to clear, then staggers each letter by 40ms */
   animation: elegantLetterReveal 0.5s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
-  animation-delay: calc(1.8s + (var(--char-index) * 0.04s));
+  animation-delay: calc(1.9s + (var(--char-index) * 0.04s));
 }
 
 @keyframes elegantLetterReveal {
