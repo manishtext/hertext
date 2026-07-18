@@ -208,8 +208,21 @@ async function sendReply() {
 }
 
 if (sendButton) {
+  // 1. Intercept mouse clicks (Desktop/Android fallback) to keep focus on the input
+  sendButton.addEventListener('mousedown', function(event) {
+    event.preventDefault();
+  });
+
+  // 2. Intercept screen taps (iOS/Mobile) to stop the keyboard from hiding
+  sendButton.addEventListener('touchstart', function(event) {
+    event.preventDefault(); // This specifically stops the focus shift
+    sendReply(); // Manually trigger the send function
+  });
+
+  // 3. Keep the normal click listener active for desktop users
   sendButton.addEventListener('click', sendReply);
 }
+
 
 /* ==========================================================================
    6. APP VISIBILITY MONITOR
