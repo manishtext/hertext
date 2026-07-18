@@ -67,8 +67,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35px;
-  height: 45px;
+  width: 30px;
+  height: 40px;
   border: 1px solid var(--ink);
   background: var(--paper);
   font-family: 'Fraunces', serif;
