@@ -89,12 +89,24 @@ if (textInput && underlineTrack) {
   textInput.addEventListener('focus', () => underlineTrack.classList.add('is-focused'));
   textInput.addEventListener('blur', () => underlineTrack.classList.remove('is-focused'));
 
+  // Create a timer variable outside the event listener
+  let typingTimer; 
+
   textInput.addEventListener('input', () => {
-    textInput.style.height = 'auto';
-    textInput.style.height = `${textInput.scrollHeight}px`;
-    localStorage.setItem('manish_draft', textInput.value);
+    // 1. Offload the heavy height recalculation to the browser's next animation frame
+    window.requestAnimationFrame(() => {
+      textInput.style.height = 'auto';
+      textInput.style.height = `${textInput.scrollHeight}px`;
+    });
+    
+    // 2. Debounce localStorage: wait until the user pauses typing for 300ms before saving
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(() => {
+      localStorage.setItem('manish_draft', textInput.value);
+    }, 300);
   });
 }
+
 
 if (photoInput && photoLabel) {
   photoInput.addEventListener('change', () => {
@@ -127,20 +139,30 @@ function showSuccessAndReset() {
   sendingIndicator.classList.add('success');   
 
   window.setTimeout(() => {
+    // 1. Trigger the smooth text vanish animation
+    textInput.classList.add('vanish');
+    
+    // 2. Trigger the terminal's overall fade out
     terminal.classList.add('is-clearing');
 
+    // 3. Wait 300ms for both CSS animations to finish
     window.setTimeout(() => {
       textInput.value = '';
       textInput.style.height = 'auto';
+      
+      // 4. Remove the vanish class so it's ready for the next time
+      textInput.classList.remove('vanish'); 
+      
       localStorage.removeItem('manish_draft'); 
       photoInput.value = '';
       photoLabel.textContent = DEFAULT_PHOTO_LABEL;
       setTransmitting(false);
       sendingIndicator.classList.remove('success'); 
       terminal.classList.remove('is-clearing');
-    }, 260);
+    }, 300); // Matches the 300ms CSS transition
   }, 1500); 
 }
+
 
 async function sendReply() {
   if (isSending || !textInput || !photoInput) return;

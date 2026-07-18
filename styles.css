@@ -217,30 +217,29 @@ body {
 }
 
 /* ==========================================================================
-   PRIVATE FEEDBACK TERMINAL — centered, floating, same double-box language
+   PRIVATE FEEDBACK TERMINAL
    ========================================================================== */
 .feedback-terminal {
-  position: fixed !important; /* Forces it to lock to the screen */
+  position: fixed !important; 
   left: 50%;
   bottom: 28px;
   transform: translateX(-50%);
   width: calc(100% - 64px);
   max-width: 480px;
-
   isolation: isolate;
-  background: var(--paper);
+  background: #EAE4D6; 
   border: 1px solid var(--ink);
-  border-radius: 0;
-  z-index: 999; /* Boosted so it always floats over text and watermarks */
-
+  border-left: 6px solid var(--accent); 
+  border-radius: 2px 8px 8px 2px; 
+  z-index: 999; 
   padding: 22px 24px calc(20px + env(safe-area-inset-bottom));
-
   opacity: 0;
   animation: terminal-reveal 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: 1660ms;
+    /* Add this to the base .feedback-terminal class */
+  transition: opacity 260ms ease, transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+
 }
-
-
 
 @keyframes terminal-reveal {
   to {
@@ -258,7 +257,7 @@ body {
   height: 100%;
   border: 1px solid var(--accent);
   background: rgb(240, 234, 224);
-  border-radius: 0;
+  border-radius: 2px 8px 8px 2px; 
   z-index: -1;
 }
 
@@ -266,33 +265,43 @@ body {
   transition: opacity 260ms ease;
   opacity: 0.35;
 }
-
+ 
 .terminal-input {
+  -webkit-appearance: none;
+  appearance: none;
   display: block;
   width: 100%;
   resize: none;
   border: none;
   outline: none;
   background: var(--input-surface);
-  color: var(--ink);
+  color: var(--ink) ;
+  border-radius: 1px;
   font-family: 'Fraunces', serif;
   font-style: italic;
-  font-size: 15px; /* Locked size fixes placeholder clipping */
-  line-height: 1.5;
-  padding: 12px 14px;
+  font-size: 15px; 
+  line-height: 1.2;
+  padding: 10px 8px; 
   overflow-y: hidden;
-   /* --- THE RETRO TERMINAL CURSOR --- */
-  caret-color: var(--accent); /* Keeps your signature rust-red accent color */
-  caret-shape: underscore;         /* Transforms the cursor into a thick, bold terminal block */
+  caret-color: var(--accent); 
+  caret-shape: underscore;
+    /* NEW: Smooth transition for when we add the vanish class */
+  transition: opacity 300ms ease, transform 300ms ease;
+  transform: translateY(0);
 }
 
+/* NEW: The class JavaScript will add when the user hits send */
+.terminal-input.vanish {
+  opacity: 0;
+  transform: translateY(-8px); /* Gently floats up as it fades */
+  pointer-events: none; /* Prevents typing while it vanishes */
+}
 
 .terminal-input::placeholder {
   color: var(--ink-muted);
   opacity: 0.85;
 }
 
-/* Gentle ink underline that grows on focus, instead of a hard border */
 .underline-track {
   height: 1px;
   background: var(--hairline);
@@ -307,7 +316,7 @@ body {
   background: var(--accent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .underline-track.is-focused .underline-fill {
@@ -318,6 +327,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 14px; 
 }
 
 .terminal-right {
@@ -326,19 +336,6 @@ body {
   gap: 14px;
 }
 
-
-
-
-
-/* 1. Push actions down to prevent overriding the textarea */
-.terminal-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 14px; /* NEW: Safe breathing room */
-}
-
-/* 2. Base Button Shape — Material elevation, paper aesthetic */
 .terminal-action-label,
 .terminal-send {
   font-family: 'Inter', sans-serif;
@@ -348,33 +345,29 @@ body {
   text-transform: uppercase;
   cursor: pointer;
   user-select: none;
-  
   padding: 8px 14px;
-  border-radius: 4px; /* Softer, tactile corners */
+  border-radius: 4px; 
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all 250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* "Add Media" — Quiet Material Chip */
 .terminal-action-label {
   color: var(--ink-muted);
-  background: var(--input-surface); /* Solid surface instead of an outline */
+  background: var(--input-surface); 
   border: 1px solid transparent;
 }
 
 .terminal-action-label:hover {
   color: var(--ink);
-  background: var(--hairline); /* Deepens slightly on touch */
+  background: var(--hairline); 
 }
 
-/* "Send" — Elevated Primary Action */
 .terminal-send {
   color: var(--paper);
   background: var(--accent);
   border: 1px solid var(--accent);
-  /* Material shadow logic: ambient + directional */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(123, 59, 50, 0.15); 
 }
 
@@ -383,7 +376,6 @@ body {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(123, 59, 50, 0.2);
 }
 
-/* Physical press — settles into the page */
 .terminal-action-label:active,
 .terminal-send:active:not(:disabled) {
   transform: scale(0.97) translateY(0);
@@ -397,15 +389,12 @@ body {
   transform: none;
 }
 
-/* NEW: Success state for the indicator text */
 .sending-indicator.success {
   color: var(--accent);
   opacity: 1;
   font-weight: 600;
-  animation: none; /* Stops the pulsing */
+  animation: none; 
 }
-
-
 
 .sending-indicator {
   font-family: 'Inter', sans-serif;
@@ -431,7 +420,6 @@ body {
   display: none;
 }
 
-/* Visible keyboard focus (accessibility floor) */
 .terminal-action-label:focus-visible,
 .terminal-send:focus-visible,
 .terminal-input:focus-visible {
