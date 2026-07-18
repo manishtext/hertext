@@ -168,6 +168,11 @@ async function sendReply() {
   if (isSending || !textInput || !photoInput) return;
 
   const text = textInput.value.trim();
+    // ADD THESE TWO LINES TO FIX THE BUG:
+  textInput.style.height = 'auto'; // Instantly shrinks the box back to 1 line
+  localStorage.removeItem('manish_draft'); // Deletes the draft so it doesn't reappear
+  
+  
   const file = photoInput.files && photoInput.files[0];
 
   if (!text && !file) return;
