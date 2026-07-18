@@ -282,7 +282,8 @@ body {
   font-size: 15px; 
   line-height: 1.2;
   padding: 10px 8px; 
-  overflow-y: hidden;
+  max-height: 140px;
+  overflow-y: auto;
   caret-color: var(--accent); 
   caret-shape: underscore;
     /* NEW: Smooth transition for when we add the vanish class */
